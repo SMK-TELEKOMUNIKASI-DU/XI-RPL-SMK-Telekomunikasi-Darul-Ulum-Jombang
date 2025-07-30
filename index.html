@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Kelas XI RPL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f9f9;
+      color: #333;
+    }
+
+    nav {
+      background-color: white;
+      color: #1f7a4c;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #1f7a4c;
+    }
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #1f7a4c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-image: url('halder.webp');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 150, 0.5);
+      top: 0;
+      left: 0;
+    }
+
+    .text-content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      color: white;
+    }
+
+    .text-content h1 {
+      font-size: 3em;
+      font-weight: bold;
+      margin: 0;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    main {
+      max-width: 800px;
+      margin: -50px auto 0 auto;
+      padding: 2rem;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      z-index: 2;
+      position: relative;
+    }
+
+    h2 {
+      color: #1f7a4c;
+    }
+
+    .section {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .motivation {
+      background: #e0f2f1;
+      border-left: 6px solid #00796b;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      margin-top: 2rem;
+    }
+
+    footer {
+      background-color: #1f7a4c;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        margin: 1rem;
+        padding: 1.2rem;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+      }
+    }
+
+    /* Tombol Chat AI */
+    #toggle-chat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1f78b4;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    #chatbot {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 300px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      font-size: 14px;
+      display: none;
+      flex-direction: column;
+      z-index: 999;
+    }
+    #chatbot-header {
+      background-color: #1f78b4;
+      color: white;
+      padding: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    #chat-content {
+      height: 200px;
+      overflow-y: auto;
+      padding: 10px;
+    }
+    #chat-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    #chat-input input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      outline: none;
+    }
+    #chat-input button {
+      background-color: #1f78b4;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <<nav>
+    <h1>Kelas XI-RPL</h1>
+    <div class="nav-links">
+      <a href="galeri.html">Galeri</a>
+      <a href="praturan.html">Peraturan</a>
+      <a href="setruktur.html">Struktur Kelas</a>
+      <a href="#drive">Drive Kelas</a>
+      <a href="#info">Informasi</a>
+      <a href="#sambutan">Data Anak Kelas</a>
+    </div>
+  </nav>
+  
+
+  <div class="header">
+    <div class="overlay"></div>
+    <div class="text-content">
+      <h1>Selamat Datang Di Web Kelas XI RPL<br>SMK Telekomunikasi Darul Ulum</h1>
+    </div>
+  </div>
+
+  <main>
+    <section>
+      <h2> Kelas XI RPL</h2>
+      <p>Kelas XI RPL bukan hanya sekadar ruangan dengan meja dan kursi, tapi saksi bisu tawa, canda, marah, bahkan tangis kita...</p>
+    </section>
+
+    <section class="motivation">
+      <h2>Motivasi</h2>
+      <p>Waktu tidak menunggu siapa pun...</p>
+    </section>
+  </main>
+
+  
+  <div class="section" id="drive">
+    <div class="card">
+      <h2>Drive Kelas</h2>
+      <p><a href="https://drive.google.com/drive/folders/14Ry5kRirBwoT7G8_yNYkekYTOwBQPJEO?usp=sharing" target="_blank">Google Drive</a></p>
+    </div>
+  </div>
+
+  <div class="section" id="info">
+    <div class="card">
+      <h2>Informasi Kelas</h2>
+      <p>Website ini dibuat sebagai pusat informasi dan komunikasi siswa kelas XI RPL.</p>
+    </div>
+  </div>
+
+  <!-- Chat AI -->
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Asisten Kelas AI</title>
+  <style>
+    #chatbot {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    #chatbot-header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #chat-content {
+      padding: 10px;
+      height: 200px;
+      overflow-y: auto;
+      background: #f9f9f9;
+    }
+    #chat-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    #userInput {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
+    #chat-input button {
+      padding: 10px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    #chat-input button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div id="chatbot">
+  <div id="chatbot-header" onclick="hideHeader()">Asisten Kelas AI 🤖</div>
+  <div id="chat-content">
+    <p><strong>Bot:</strong> Hai! Ada yang bisa aku bantu?</p>
+  </div>
+  <div id="chat-input">
+    <input type="text" id="userInput" placeholder="Ketik pertanyaan...">
+    <button onclick="sendMessage()">Kirim</button>
+  </div>
+</div>
+
+<script>
+  function hideHeader() {
+    document.getElementById("chatbot-header").style.display = "none";
+  }
+
+  function sendMessage() {
+    const userInput = document.getElementById("userInput").value.trim();
+    if (!userInput) return;
+
+    const chatContent = document.getElementById("chat-content");
+    const userMessage = `<p><strong>Kamu:</strong> ${userInput}</p>`;
+    chatContent.innerHTML += userMessage;
+
+    const botReply = generateBotResponse(userInput);
+    chatContent.innerHTML += `<p><strong>Bot:</strong> ${botReply}</p>`;
+
+    chatContent.scrollTop = chatContent.scrollHeight;
+    document.getElementById("userInput").value = '';
+  }
+
+  function generateBotResponse(input) {
+    const msg = input.toLowerCase();
+
+    // Contoh jaringan buatan sederhana (respon berdasarkan kata kunci)
+    if (msg.includes("nama")) {
+      return "Namaku adalah Asisten Kelas AI, senang bertemu denganmu!";
+    } else if (msg.includes("jadwal")) {
+      return "Jadwal kelas hari ini bisa kamu cek di papan pengumuman atau tanyakan guru piket.";
+    } else if (msg.includes("tugas")) {
+      return "Jika kamu belum mengerjakan tugas, sebaiknya segera diselesaikan sebelum batas waktu!";
+    } else if (msg.includes("terima kasih")) {
+      return "Sama-sama! Senang bisa membantu 😊";
+    } else if (msg.includes("siapa kamu")) {
+      return "Aku adalah asisten virtual cerdas yang dibuat untuk membantumu di kelas.";
+    } else if (msg.includes("halo") || msg.includes("hai")) {
+      return "Halo juga! Ada yang bisa aku bantu hari ini?";
+    } else {
+      // Default jawaban AI
+      return "Aku sedang belajar memahami lebih banyak topik. Coba jelaskan pertanyaanmu lebih detail.";
+    }
+  }
+</script>
+
+</body>
+</html>
+
+
+  <button id="toggle-chat" onclick="toggleChat()">💬</button>
+
+  <footer>
+    &copy; 2025 XI RPL - SMK Telekomunikasi Darul Ulum | Dibuat oleh Kelas XI-RPL
+  </footer>
+
+  <script>
+    function toggleChat() {
+      const chat = document.getElementById("chatbot");
+      chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const chatContent = document.getElementById("chat-content");
+      const userText = input.value.trim();
+      if (userText === "") return;
+      const userMessage = `<p><strong>Anda:</strong> ${userText}</p>`;
+      const botMessage = `<p><strong>Bot:</strong> Maaf, saya masih versi demo 😅</p>`;
+      chatContent.innerHTML += userMessage + botMessage;
+      input.value = "";
+      chatContent.scrollTop = chatContent.scrollHeight;
+    }
+  </script>
+</body>
+</html>
